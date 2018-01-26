@@ -1,0 +1,23 @@
+<h5>Article numéro <?php echo $this->getArticle[0]->id_article?></h5>
+<table>
+    <thead>
+    <tr>
+        <th>Numéro Article</th>
+        <th>Nom Article</th>
+        <th>Prix Unitaire</th>
+        <th>Quantité en stock</th>
+        <th>Numéro client</th>
+    </tr>
+    </thead>
+    <?php foreach ($this->getArticle as $item){
+        echo "<tbody>
+        <tr>
+            <td>". $item->id_article ."</td>
+            <td>". $item->nom_article . "</td>
+            <td>". $item->prix_unitaire ."</td>
+            <td>". $item->quantite_article . "</td>
+            <td>". $item->client_id ."</td>
+        </tr>
+    </tbody>";
+    } ?>
+</table>

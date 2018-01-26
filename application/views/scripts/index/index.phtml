@@ -1,0 +1,56 @@
+<table>
+    <thead>
+    <tr>
+        <th>Numéro Client</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Date Naissance</th>
+        <th>Nombre Commandes</th>
+        <th>Montant total</th>
+        <th>Dernier achat</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+<?php foreach ($this->getClient as $item){?>
+    <tbody>
+          <tr>
+            <td><?php echo $item->id_client ?></td>
+            <td><?php echo $item->nom_client ?></td>
+            <td><?php echo $item->prenom_client ?></td>
+            <td><?php echo $item->email_client ?></td>
+            <td><?php echo date("d/m/Y", strtotime($item->date_naissance)) ?></td>
+            <td><?php echo $item->nbCommande ?></td>
+            <td>
+                <form method="post" action="commande">
+                    <button name="idCom" value="<?php echo $item->id_client?>"><?php echo number_format($item->sommeCommande, 2, ',', ' ')?></button>
+                </form>
+            </td>
+              <?php
+            if  ($item->maxDate){
+                echo '<td>'. date("d/m/Y", strtotime($item->maxDate)) .'</td>';
+            }
+            else {
+                echo '<td></td>';
+            }?>
+            <td>
+                <form method="post" action="update-client">
+                    <button class="btn waves-effect waves-light" type="submit" name="edit" value="<?php echo $item->id_client?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="delete-client">
+                    <button class="btn waves-effect waves-light" type="submit" name="delete" value="<?php echo $item->id_client?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </form>
+            </td>
+          </tr>
+        </tbody>
+<?php }?>
+</table>
+
+
+<div class="row">
+    <a href="create-client">
+        <button class="btn waves-effect waves-light" type="submit" name="createClient">Inscription client<i class="fa fa-user-plus" aria-hidden="true"></i></button>
+    </a>
+</div>

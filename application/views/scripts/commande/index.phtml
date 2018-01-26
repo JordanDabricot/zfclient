@@ -1,0 +1,25 @@
+<h5>Liste commandes client <?php echo $this->getCommande[0]->id_client?></h5>
+<table>
+    <thead>
+    <tr>
+        <th>Numéro Commande</th>
+        <th>Date de commande</th>
+        <th>Nombre d'articles</th>
+        <th>Montant HT</th>
+        <th>Montant TTC</th>
+    </tr>
+    </thead>
+    <?php foreach ($this->getCommande as $item){
+     echo "<tbody>
+        <tr>
+            <form method='post' action='article'>
+                <td><button name='idArt' value=". $item->id_commande .">". $item->id_commande ."</td>
+            </form>
+            <td>". $item->date_commande . "</td>
+            <td>". $item->nombre_article ."</td>
+            <td>". $item->prix . "</td>
+            <td>". (($item->prix*20/100)+$item->prix)."</td>
+        </tr>
+    </tbody>";
+    } ?>
+</table>
